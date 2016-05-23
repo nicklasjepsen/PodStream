@@ -14,6 +14,8 @@ namespace PodStreamService.Rss
 		[XmlElement("description")]
 		public string Description { get; set; }
 
+        public string Category { get; set; }
+
 		[XmlElement("link")]
 		public string Link { get; set; }
 

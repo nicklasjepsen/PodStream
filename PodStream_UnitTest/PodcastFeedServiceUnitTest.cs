@@ -16,7 +16,7 @@ namespace PodStream_UnitTest
         public void TestGetFeedItems_ParamIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => 
-                new PodcastFeedService(new Mock<IRssService>().Object).GetFeedItems(null));
+                new PodcastFeedService(new Mock<IRssService>().Object).GetFeed(null));
         }
 
         [Test]
@@ -45,8 +45,8 @@ namespace PodStream_UnitTest
             });
             
             var feedService = new PodcastFeedService(rssServiceMock.Object);
-            var items = feedService.GetFeedItems(TestConfig.ValidFeedUrl);
-            Assert.AreEqual(1, items.Count());
+            var feed = feedService.GetFeed(TestConfig.ValidFeedUrl);
+            Assert.AreEqual(1, feed.FeedItems.Count());
         }
     }
 }

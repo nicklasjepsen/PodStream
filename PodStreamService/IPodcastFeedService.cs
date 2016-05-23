@@ -4,6 +4,6 @@ namespace PodStreamService
 {
     public interface IPodcastFeedService
     {
-        IEnumerable<PodcastServiceFeedItem> GetFeedItems(string feedUrl);
+        PodcastFeed GetFeed(string feedUrl);
     }
 }

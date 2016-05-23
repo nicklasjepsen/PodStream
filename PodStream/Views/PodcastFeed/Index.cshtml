@@ -1,37 +1,26 @@
-﻿@model IEnumerable<PodStream.Models.FeedItem>
+﻿@model PodStream.Models.Feed
 
 @{
     ViewBag.Title = "Podcast Feed";
 }
 
-<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
+<h2>@Model.Title</h2>
+<p>@Model.Description</p>
 
+<h3>Udsendelser</h3>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Summary)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublishDate)
-        </th>
+        <th>Beskrivelse</th>
+        <th>Link</th>
+        <th>Udgivelses dato</th>
     </tr>
-    @foreach (var item in Model)
+    @foreach (var item in Model.FeedItems)
     {
 
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                <a href="@Html.DisplayFor(modelItem => item.Url)" target="_blank">Afspil</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublishDate)
-            </td>
+            <td>@item.Summary</td>
+            <td><a href="@item.Url" target="_blank">Afspil</a></td>
+            <td>@item.PublishDate.ToString("dd-MM-yyyy")</td>
         </tr>
     }
 </table>

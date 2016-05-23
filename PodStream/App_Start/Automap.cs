@@ -14,6 +14,7 @@ namespace PodStream
         public static void ConfigureAutoMapper()
         {
             Mapper.Initialize(cfg => cfg.CreateMap<PodcastServiceFeedItem, FeedItem>());
+            Mapper.Initialize(cfg => cfg.CreateMap<PodcastFeed, Feed>());
         }
     }
 }

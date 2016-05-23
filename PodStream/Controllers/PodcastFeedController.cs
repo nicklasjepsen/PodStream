@@ -23,8 +23,11 @@ namespace PodStream.Controllers
         
         public ActionResult Index()
         {
-            return View(Mapper.Map<IEnumerable<PodcastServiceFeedItem>, List<FeedItem>>(
-                podcastFeedService.GetFeedItems("http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500")));
+            var feed = podcastFeedService.GetFeed("http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500");
+            if (feed == null)
+                return View();
+
+            return View(Mapper.Map<PodcastFeed, Feed>(feed));
         }
     }
 }
