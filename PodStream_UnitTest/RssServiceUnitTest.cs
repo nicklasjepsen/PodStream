@@ -8,8 +8,7 @@ namespace PodStream_UnitTest
     [TestFixture]
     public class RssServiceUnitTest
     {
-        private const string ValidFeedUrl = "http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500";
-        private const string InvalidFeedUrl = "http://dr.dk/podcast404";
+
 
         [Test]
         public void TestGetRssItems_InvalidUrl()
@@ -23,13 +22,13 @@ namespace PodStream_UnitTest
         public void TestGetRssItems_NotFound()
         {
             // Returns null if url is not found
-            Assert.AreEqual(null, new RssService().GetFeedItems(InvalidFeedUrl));
+            Assert.AreEqual(null, new RssService().GetFeedItems(TestConfig.InvalidFeedUrl));
         }
 
         [Test]
         public void TestGetRssItems()
         {
-            var rssItems = new RssService().GetFeedItems(ValidFeedUrl);
+            var rssItems = new RssService().GetFeedItems(TestConfig.ValidFeedUrl);
 
             Assert.IsNotNull(rssItems);
             Assert.IsNotNull(rssItems.GetRssChannels());

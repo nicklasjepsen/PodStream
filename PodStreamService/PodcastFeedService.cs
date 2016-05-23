@@ -32,19 +32,8 @@ namespace PodStreamService
                         Url = rssItem.Link,
                         ExternalItemId = rssItem.GetGuid(),
                         PublishDate = rssItem.Date,
-                        //FeedSource = source,
                         Summary = rssItem.Description,
                     }).ToList();
-
-            //return new List<PodcastServiceFeedItem>
-            //{
-            //    new PodcastServiceFeedItem
-            //    {
-            //        PublishDate = DateTime.Now,
-            //        Summary = "This is the feed item summary",
-            //        Url = "http://www.dr.dk/mu/MediaRedirector/WithFileExtension/harddisken-2016-05-13.mp3?highestBitrate=True&amp;podcastDownload=True",
-            //    }
-            //};
         }
     }
 }
