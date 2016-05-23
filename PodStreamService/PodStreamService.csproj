@@ -40,10 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rss\DateTimeParser.cs" />
     <Compile Include="IPodcastFeedService.cs" />
+    <Compile Include="IRssService.cs" />
     <Compile Include="PodcastFeedService.cs" />
     <Compile Include="FeedItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RssService.cs" />
+    <Compile Include="Rss\BaseRssChannel.cs" />
+    <Compile Include="Rss\BaseRssFeed.cs" />
+    <Compile Include="Rss\BaseRssItem.cs" />
+    <Compile Include="Rss\IRssChannel.cs" />
+    <Compile Include="Rss\IRssFeed.cs" />
+    <Compile Include="Rss\RssDeserializer.cs" />
+    <Compile Include="Rss\RssImage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

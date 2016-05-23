@@ -1,4 +1,5 @@
 ﻿using System;
+using Moq;
 using NUnit.Framework;
 using PodStreamService;
 
@@ -10,7 +11,8 @@ namespace PodStream_UnitTest
         [Test]
         public void TestGetFeedItems_ParamIsNull()
         {
-            Assert.Throws<ArgumentNullException>(() => new PodcastFeedService().GetFeedItems(null));
+            Assert.Throws<ArgumentNullException>(() => 
+                new PodcastFeedService(new Mock<IRssService>().Object).GetFeedItems(null));
         }
     }
 }

@@ -9,8 +9,11 @@ namespace PodStreamService
 {
     public class PodcastServiceFeedItem
     {
+        public string Title { get; set; }
         public string Summary { get; set; }
         public string Url { get; set; }
         public DateTime PublishDate { get; set; }
+
+        public string ExternalItemId { get; set; }
     }
 }
