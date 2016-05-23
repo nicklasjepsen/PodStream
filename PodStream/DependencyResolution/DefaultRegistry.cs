@@ -32,6 +32,7 @@ namespace PodStream.DependencyResolution {
 					scan.With(new ControllerConvention());
                 });
             For<IPodcastFeedService>().Use<PodcastFeedService>();
+            For<IRssService>().Use<RssService>();
         }
 
         #endregion

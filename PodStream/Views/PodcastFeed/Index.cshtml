@@ -1,4 +1,4 @@
-﻿@model List<PodStream.Models.FeedItem>
+﻿@model IEnumerable<PodStream.Models.FeedItem>
 
 @{
     ViewBag.Title = "Podcast Feed";
@@ -7,20 +7,21 @@
 <h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
 
-@foreach (var item in Model)
-{
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => item.Summary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => item.Url)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => item.PublishDate)
-            </th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Summary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Summary)
@@ -32,6 +33,6 @@
                 @Html.DisplayFor(modelItem => item.PublishDate)
             </td>
         </tr>
-    </table>
-}
+    }
+</table>
 

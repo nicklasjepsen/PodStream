@@ -24,7 +24,7 @@ namespace PodStream.Controllers
         public ActionResult Index()
         {
             return View(Mapper.Map<IEnumerable<PodcastServiceFeedItem>, List<FeedItem>>(
-                podcastFeedService.GetFeedItems("")));
+                podcastFeedService.GetFeedItems("http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500")));
         }
     }
 }
