@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStream", "PodStream\PodStream.csproj", "{71ABFA71-8529-4ADE-9545-0DEB3EEE0798}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStreamService", "PodStreamService\PodStreamService.csproj", "{B143EE01-DCA9-4193-A7CE-E866083B056F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStream_UnitTest", "PodStream_UnitTest\PodStream_UnitTest.csproj", "{55DA6779-10EB-4729-987C-35CEF2EABB44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{71ABFA71-8529-4ADE-9545-0DEB3EEE0798}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71ABFA71-8529-4ADE-9545-0DEB3EEE0798}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71ABFA71-8529-4ADE-9545-0DEB3EEE0798}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B143EE01-DCA9-4193-A7CE-E866083B056F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B143EE01-DCA9-4193-A7CE-E866083B056F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B143EE01-DCA9-4193-A7CE-E866083B056F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B143EE01-DCA9-4193-A7CE-E866083B056F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
