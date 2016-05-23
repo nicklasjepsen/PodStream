@@ -10,9 +10,7 @@ namespace PodStream_UnitTest
         [Test]
         public void TestGetFeedItems_ParamIsNull()
         {
-            var service = new PodcastFeedService();
-            service.GetFeedItems(null);
-            Assert.Throws<ArgumentNullException>(() => service.GetFeedItems(null));
+            Assert.Throws<ArgumentNullException>(() => new PodcastFeedService().GetFeedItems(null));
         }
     }
 }

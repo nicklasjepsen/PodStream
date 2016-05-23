@@ -10,6 +10,8 @@ namespace PodStreamService
     {
         public IEnumerable<PodcastServiceFeedItem> GetFeedItems(string feedUrl)
         {
+            if (string.IsNullOrEmpty(feedUrl))
+                throw new ArgumentNullException(nameof(feedUrl));
             return new List<PodcastServiceFeedItem>
             {
                 new PodcastServiceFeedItem
