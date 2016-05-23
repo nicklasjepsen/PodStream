@@ -1,6 +1,4 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NUnit.Framework.Internal;
 using NUnit.Framework;
 using PodStreamService;
 
@@ -10,11 +8,11 @@ namespace PodStream_UnitTest
     public class PodcastFeedServiceUnitTest
     {
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void TestGetFeedItems_ParamIsNull()
         {
             var service = new PodcastFeedService();
             service.GetFeedItems(null);
+            Assert.Throws<ArgumentNullException>(() => service.GetFeedItems(null));
         }
     }
 }
