@@ -13,7 +13,6 @@ namespace PodStream.Models
         public IEnumerable<SelectListItem> AvailableChannels { get; set; }
         public string SelectedShow { get; set; }
         public IEnumerable<SelectListItem> AvailableShows { get; set; }
-        //public PodcastFeed PodcastFeed { get; set; }
 
     }
 }

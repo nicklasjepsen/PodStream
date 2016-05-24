@@ -33,6 +33,7 @@ namespace PodStream.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
+            For<IWebClient>().Use<TestableWebClient>();
             For<IPodcastFeedProvider>().Use<PodcastFeedProvider>();
             For<IRssService>().Use<RssService>();
         }
