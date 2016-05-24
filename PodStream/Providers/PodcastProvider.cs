@@ -33,8 +33,8 @@ namespace PodStream.Providers
                 var jsonResponse = webClient.DownloadString(
                     $"http://www.dr.dk/AllePodcast/api/GetByFirst?letter=&channel={channel}&skip={curSkipCount}");
                 var parsedResponse = JsonConvert.DeserializeObject<Channel>(jsonResponse);
-                curSkipCount = parsedResponse.Skip;
                 allShows.AddRange(parsedResponse.Data);
+                curSkipCount = allShows.Count;
                 totalCount = parsedResponse.TotalCount;
             } while (allShows.Count < totalCount);
             
