@@ -35,14 +35,18 @@ namespace PodStream.Controllers
             return View(podcast);
         }
 
-        public ActionResult GetEpisodes(string xmlUrl)
+        public ActionResult GetEpisodes(string feedUrl)
         {
-            var res = podcastFeedService.Get(xmlUrl);
+            if (string.IsNullOrEmpty(feedUrl))
+                return null;
+            var res = podcastFeedService.Get(feedUrl);
             return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetShows(string name)
         {
+            if (string.IsNullOrEmpty(name))
+                return null;
             var items = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Vælg program", Value = "0"}
