@@ -6,6 +6,6 @@ namespace PodStream.Providers
     public interface IPodcastProvider
     {
         IEnumerable<string> GetChannels();
-        Channel GetShows(string channel);
+        IEnumerable<Show> GetShows(string channel);
     }
 }

@@ -23,12 +23,22 @@ namespace PodStream.Providers
             return JsonConvert.DeserializeObject<string[]>(jsonResponse).Where(c => !string.IsNullOrEmpty(c));
         }
 
-        public Channel GetShows(string channel)
+        public IEnumerable<Show> GetShows(string channel)
         {
-            var jsonResponse = webClient.DownloadString(
-                    $"http://www.dr.dk/AllePodcast/api/GetByFirst?letter=&channel={channel}&take=undefined");
-            var parsedResponse = JsonConvert.DeserializeObject<Channel>(jsonResponse);
-            return parsedResponse;
+            var allShows = new List<Show>();
+            int totalCount;
+            var curSkipCount = 0;
+            do
+            {
+                var jsonResponse = webClient.DownloadString(
+                    $"http://www.dr.dk/AllePodcast/api/GetByFirst?letter=&channel={channel}&skip={curSkipCount}");
+                var parsedResponse = JsonConvert.DeserializeObject<Channel>(jsonResponse);
+                curSkipCount = parsedResponse.Skip;
+                allShows.AddRange(parsedResponse.Data);
+                totalCount = parsedResponse.TotalCount;
+            } while (allShows.Count < totalCount);
+            
+            return allShows;
         }
     }
 }

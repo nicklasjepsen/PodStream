@@ -4,17 +4,31 @@
     ViewBag.Title = "Podcast Feed";
 }
 
-<h1>Vælg en kanal og et program</h1>
-<div class="col-md-2">
-    @Html.DropDownListFor(x => x.SelectedChannel, new SelectList(Model.AvailableChannels, "Value", "Text"), "Vælg kanal", new { @class = "form-control" })
+<h3>Vælg en kanal og et program</h3>
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.DropDownListFor(x => x.SelectedChannel, new SelectList(Model.AvailableChannels, "Value", "Text"), "Vælg kanal", new { @class = "form-control" })
+    </div>
+    <div class="col-md-3">
+        @Html.DropDownListFor(x => x.SelectedShow, new SelectList(Model.AvailableShows, "Value", "Text"), "Vælg program", new { @class = "form-control" })
+    </div>
 </div>
-<div class="2">
-    @Html.DropDownListFor(x => x.SelectedShow, new SelectList(Model.AvailableShows, "Value", "Text"), "Vælg program", new { @class = "form-control" })
+
+<div class="row" style="margin-top: 30px;">
+    <div class="col-md-12">
+        <table id="feedItemsTable" class="table"></table>
+    </div>
 </div>
 
 <script type="text/javascript">
+    $(initTable = function () {
+        $("#feedItemsTable").html('<thead><tr><th class="col-md-1">Afspil</th><th class="col-md-8">Beskrivelse</th><th class="col-md-1">Varighed</th><th class="col-md-1">Størrelse</th><th class="col-md-1">Dato</th></tr></thead><tbody></tbody>');
+    });
+
     $(function () {
         $("#SelectedChannel").change(function () {
+            initTable();
             var val = $(this).val();
             var subItems = "";
             $.getJSON("@Url.Action("GetShows","Podcast")", { name: val }, function (data) {
@@ -25,54 +39,30 @@
             });
         });
     });
-</script>
 
-<script type="text/javascript">
     $(function () {
         $("#SelectedShow").change(function () {
             var val = $(this).val();
-            window.location.href = '/Podcast/Episodes/' +$("#SelectedChannel").val() + '/' + val;
+            initTable();
+            var tableBody;
+            $.getJSON("@Url.Action("GetEpisodes","Podcast")", { xmlUrl: val }, function (data) {
+                $.each(data.FeedItems, function (index, item) {
+                    tableBody += '<tr><td><div class="text-center"><a href="';
+                    tableBody += item.Url;
+                    tableBody += '" target="_blank"><i style="font-size: 1.5em;" class="text-center success glyphicon glyphicon-play-circle"></i></a></div></td><td>';
+                    tableBody += item.Summary;
+                    tableBody += '</td><td class="text-right">';
+                    tableBody += item.Duration;
+                    tableBody += '</td><td class="text-right">';
+                    tableBody += item.Size;
+                    tableBody += '</td><td class="text-right">';
+                    tableBody += item.PublishDate;
+                    tableBody += '</td></tr>';
+                });
+
+                $('#feedItemsTable tbody').html(tableBody);
+
+            });
         });
     });
 </script>
-
-
-@*@{
-        if (Model.PodcastFeed != null)
-        {
-            <h2>@Model.PodcastFeed.Title</h2>
-                <p>@Model.PodcastFeed.Description</p>
-        }
-    }*@
-
-@*<h3>Udsendelser</h3>
-    <div class="table-responsive">
-        <table class="table-striped">
-            <tr>
-                <th class="col-md-1">Afspil</th>
-                <th class="col-md-8">Beskrivelse</th>
-                <th class="col-md-1">Varighed</th>
-                <th class="col-md-1">Størrelse</th>
-                <th class="col-md-1">Udgivelses dato</th>
-            </tr>
-            @{
-                if (Model.PodcastFeed != null)
-                {
-                    foreach (var item in Model.PodcastFeed.FeedItems)
-                    {
-                        <tr>
-                            <td>
-                                <div class="text-center">
-                                    <a href="@item.Url" target="_blank"><i style="font-size: 1.5em;" class="text-center success glyphicon glyphicon-play-circle"></i></a>
-                                </div>
-                            </td>
-                            <td>@item.Summary</td>
-                            <td class="text-right">@item.Duration</td>
-                            <td class="text-right">@item.Size</td>
-                            <td class="text-right">@item.PublishDate.ToString("dd-MM-yyyy")</td>
-                        </tr>
-                    }
-                }
-            }
-        </table>
-    </div>*@

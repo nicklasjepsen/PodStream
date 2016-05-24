@@ -7,6 +7,7 @@ using AutoMapper;
 using Newtonsoft.Json;
 using PodStream.Models;
 using PodStream.Providers;
+using PodStream.Providers.Models.PodcastApi;
 
 namespace PodStream.Controllers
 {
@@ -30,7 +31,7 @@ namespace PodStream.Controllers
         {
             var podcast = new Podcast
             {
-                AvailableChannels = GetChannels().Select(c => new SelectListItem {Text = c, Value = c}),
+                AvailableChannels = GetChannels().Select(c => new SelectListItem { Text = c, Value = c }),
                 AvailableShows = new SelectListItem[0]
             };
 
@@ -43,36 +44,42 @@ namespace PodStream.Controllers
             return podcastProvider.GetChannels();
         }
 
-
-        [Route("Podcast/Episodes/{channel}/{show}")]
-        public string Episodes(string channel, string show)
+        //[HttpPost]
+        //[Route("Podcast/Episodes/{channel}/{show}")]
+        public ActionResult GetEpisodes(string xmlUrl)
         {
-            return $"{channel} {show}";
+            //if (!shows.ContainsKey(show))
+            //    return HttpNotFound();
+            //return View(podcastFeedService.Get(shows[show]));
+            //return View();
+            var res = podcastFeedService.Get(xmlUrl);
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
+
+        private Dictionary<string, string> shows = new Dictionary<string, string>();
+
 
         public ActionResult GetShows(string name)
         {
-            List<SelectListItem> items = new List<SelectListItem>();
-            items.Add(new SelectListItem { Text = "Vælg program", Value = "0" });
-
-            var channelDetails = podcastProvider.GetShows(name);
-
-            foreach (var show in channelDetails.Data)
+            var items = new List<SelectListItem>
             {
-                items.Add(new SelectListItem {Text = show.Title, Value = show.XmlLink});
-            }
+                new SelectListItem {Text = "Vælg program", Value = "0"}
+            };
 
-            //if (name == "3")
-            //{
-            //    items.Add(new SelectListItem { Text = "Lågsus", Value = "1" });
-            //    items.Add(new SelectListItem { Text = "Lågsus2", Value = "2" });
-            //}
-            //else
-            //if (name == "1")
-            //{
-            //    items.Add(new SelectListItem { Text = "Harddisken", Value = "3" });
-            //    items.Add(new SelectListItem { Text = "Harddisken2", Value = "4" });
-            //}
+            var allShows = podcastProvider.GetShows(name).ToList();
+            items.AddRange(allShows.Select(s =>
+                new SelectListItem
+                {
+                    Text = s.Title,
+                    Value = s.XmlLink
+                }));
+
+            foreach (var show in allShows)
+            {
+                if (shows.ContainsKey(show.Title))
+                    continue;
+                shows.Add(show.Title, show.XmlLink);
+            }
 
             return Json(items, JsonRequestBehavior.AllowGet);
         }
