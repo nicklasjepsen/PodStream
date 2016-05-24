@@ -8,24 +8,28 @@
 <p>@Model.Description</p>
 
 <h3>Udsendelser</h3>
-<table class="table">
-    <tr>
-        <th>Beskrivelse</th>
-        <th>Link</th>
-        <th>Varighed</th>
-        <th>Udgivelses dato</th>
-        <th>Størrelse</th>
-    </tr>
-    @foreach (var item in Model.FeedItems)
-    {
-
+<div class="table-responsive">
+    <table class="table-striped">
         <tr>
-            <td>@item.Summary</td>
-            <td><a href="@item.Url" target="_blank">Afspil</a></td>
-            <td>@item.Duration</td>
-            <td>@item.Size</td>
-            <td>@item.PublishDate.ToString("dd-MM-yyyy")</td>
+            <th class="col-md-1">Link</th>
+            <th class="col-md-8">Beskrivelse</th>
+            <th class="col-md-1">Varighed</th>
+            <th class="col-md-1">Størrelse</th>
+            <th class="col-md-1">Udgivelses dato</th>
         </tr>
-    }
-</table>
-
+        @foreach (var item in Model.FeedItems)
+        {
+            <tr>
+                <td>
+                    <div class="text-center">
+                        <a href="@item.Url" target="_blank"><i style="font-size: 1.5em;" class="text-center glyphicon glyphicon-play-circle"></i></a>
+                    </div>
+                </td>
+                <td>@item.Summary</td>
+                <td class="text-right">@item.Duration</td>
+                <td class="text-right">@item.Size</td>
+                <td class="text-right">@item.PublishDate.ToString("dd-MM-yyyy")</td>
+            </tr>
+        }
+    </table>
+</div>
