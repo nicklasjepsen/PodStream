@@ -8,7 +8,11 @@ namespace PodStream.Providers.Models.Rss
 	[XmlRoot("channel", IsNullable = false)]
 	public class BaseRssChannel<TItem> : IRssChannel<TItem>
 	{
-		[XmlElement("title")]
+	    public const string NameSpaceItunes = "http://www.itunes.com/dtds/podcast-1.0.dtd";
+
+        [XmlNamespaceDeclarations]
+        public XmlSerializerNamespaces Xmlns = new XmlSerializerNamespaces();
+        [XmlElement("title")]
 		public string Title { get; set; }
 
 		[XmlElement("description")]
@@ -36,5 +40,10 @@ namespace PodStream.Providers.Models.Rss
 			}
 			return RssItems;
 		}
+
+	    public BaseRssChannel()
+	    {
+            Xmlns.Add("itunes", NameSpaceItunes);
+        }
 	}
 }

@@ -22,6 +22,9 @@ namespace PodStream.Providers.Models.Rss
         [XmlElement("guid")]
         public string Guid { get; set; }
 
+        [XmlElement(ElementName = "duration", Namespace = BaseRssChannel<BaseRssItem>.NameSpaceItunes)]
+        public string Duration { get; set; }
+        
         [XmlIgnore]
         public DateTime Date
         {

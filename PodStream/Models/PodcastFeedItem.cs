@@ -17,7 +17,7 @@ namespace PodStream.Models
         [DisplayName("Udgivelses dato")]
         public DateTime PublishDate { get; set; }
 
-        public TimeSpan Duration { get; set; }
+        public string Duration { get; set; }
 
         public long? SizeInBytes { get; set; }
 

@@ -41,6 +41,7 @@ namespace PodStream.Providers
                                  ExternalItemId = rssItem.GetGuid(),
                                  PublishDate = rssItem.Date,
                                  Summary = rssItem.Description,
+                                 Duration = rssItem.Duration,
                              }).ToList(),
                 Title = channel.Title,
                 Category = channel.Category,
