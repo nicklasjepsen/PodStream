@@ -10,12 +10,9 @@ namespace PodStream.Models
     public class PodcastFeedItem
     {
         public string Title { get; set; }
-        [DisplayName("Beskrivelse")]
         public string Summary { get; set; }
-        [DisplayName("Link")]
         public string Url { get; set; }
-        [DisplayName("Udgivelses dato")]
-        public DateTime PublishDate { get; set; }
+        public string PublishDate { get; set; }
 
         public string Duration { get; set; }
 
@@ -27,7 +24,7 @@ namespace PodStream.Models
             {
                 if (SizeInBytes == null)
                     return "Unknown";
-                return SizeInBytes/1048576 + " mb";
+                return SizeInBytes/1048576 + "mb";
             }
         }
         public string ExternalItemId { get; set; }

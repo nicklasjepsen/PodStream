@@ -39,18 +39,60 @@ namespace PodStream.Providers
                                  Url = rssItem.Enclosure?.Url,
                                  SizeInBytes = rssItem.Enclosure?.Lenght,
                                  ExternalItemId = rssItem.GetGuid(),
-                                 PublishDate = rssItem.Date,
+                                 PublishDate = GetDisplayDate(rssItem.Date),
                                  Summary = rssItem.Description,
-                                 Duration = rssItem.Duration,
+                                 Duration = GetDisplayDuration(rssItem.Duration),
                              }).ToList(),
                 Title = channel.Title,
                 Category = channel.Category,
                 Description = channel.Description,
-                Image = channel.Image?.Url,
                 Url = channel.Link
             };
 
             return feedResult;
+        }
+
+        private static string GetDisplayDuration(string duration)
+        {
+            if (string.IsNullOrEmpty(duration))
+                return "?";
+
+            if (!duration.Contains(':'))
+                return "?";
+
+            var splitted = duration.Split(':');
+            if (splitted.Length < 3)
+                return "?";
+
+            var result = string.Empty;
+            var hours = splitted[0].Replace("0", "");
+            var mins = splitted[1].Replace("0", "");
+            var secs = splitted[2].Replace("0", "");
+            if (!string.IsNullOrEmpty(hours))
+                result = hours + "t";
+            if (!string.IsNullOrEmpty(mins))
+                result += " " + mins + "m";
+            if (!string.IsNullOrEmpty(secs))
+                result += " " + secs + "s";
+
+            return result;
+        }
+
+        private string GetDisplayDate(DateTime date)
+        {
+           
+            if (date > DateTime.Now.AddDays(-1))
+            {
+                return "i dag";
+            }
+            if (date > DateTime.Now.AddDays(-30))
+            {
+                return (int)(DateTime.Now - date).TotalDays + " dag(e) siden";
+            }
+            else
+            {
+                return date.ToString("dd-MM-yyyy");
+            }
         }
     }
 }

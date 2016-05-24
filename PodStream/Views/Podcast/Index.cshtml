@@ -7,7 +7,7 @@
 <h3>Vælg en kanal og et program</h3>
 
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-3">
         @Html.DropDownListFor(x => x.SelectedChannel, new SelectList(Model.AvailableChannels, "Value", "Text"), "Vælg kanal", new { @class = "form-control" })
     </div>
     <div class="col-md-3">
@@ -23,7 +23,7 @@
 
 <script type="text/javascript">
     $(initTable = function () {
-        $("#feedItemsTable").html('<thead><tr><th class="col-md-1">Afspil</th><th class="col-md-8">Beskrivelse</th><th class="col-md-1">Varighed</th><th class="col-md-1">Størrelse</th><th class="col-md-1">Dato</th></tr></thead><tbody></tbody>');
+        $("#feedItemsTable").html('<thead><tr><th class="col-md-1">Afspil</th><th class="col-md-8">Beskrivelse</th><th class="col-md-1">Varighed</th><th class="col-md-1">Størrelse</th><th class="col-md-1">Udgivet</th></tr></thead><tbody></tbody>');
     });
 
     $(function () {

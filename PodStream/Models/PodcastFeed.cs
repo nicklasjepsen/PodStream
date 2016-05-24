@@ -12,7 +12,6 @@ namespace PodStream.Models
         public string Url { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        public string Image { get; set; }
         public IEnumerable<PodcastFeedItem> FeedItems { get; set; }
     }
 }
