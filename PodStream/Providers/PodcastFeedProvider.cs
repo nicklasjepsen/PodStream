@@ -37,6 +37,7 @@ namespace PodStream.Providers
                              {
                                  Title = rssItem.Title,
                                  Url = rssItem.Enclosure?.Url,
+                                 SizeInBytes = rssItem.Enclosure?.Lenght,
                                  ExternalItemId = rssItem.GetGuid(),
                                  PublishDate = rssItem.Date,
                                  Summary = rssItem.Description,
