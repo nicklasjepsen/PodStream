@@ -26,7 +26,8 @@ namespace PodStream.Providers
 
             // ATM we are only supporting single channel RSS
             var channel = feed?.GetRssChannels()?.FirstOrDefault();
-            if (channel == null)
+            var rssItems = channel?.GetRssItems();
+            if (rssItems == null)
                 return null;
 
             var feedResult = new PodcastFeed
@@ -35,7 +36,7 @@ namespace PodStream.Providers
                              select new PodcastFeedItem
                              {
                                  Title = rssItem.Title,
-                                 Url = rssItem.Enclosure.Url,
+                                 Url = rssItem.Enclosure?.Url,
                                  ExternalItemId = rssItem.GetGuid(),
                                  PublishDate = rssItem.Date,
                                  Summary = rssItem.Description,
@@ -43,7 +44,7 @@ namespace PodStream.Providers
                 Title = channel.Title,
                 Category = channel.Category,
                 Description = channel.Description,
-                Image = channel.Image.Url,
+                Image = channel.Image?.Url,
                 Url = channel.Link
             };
 
