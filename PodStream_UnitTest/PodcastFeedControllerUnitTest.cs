@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using PodStream;
+using PodStream.Controllers;
+using PodStream.Models;
+using PodStream.Providers;
+using PodStream.Providers.Models.PodcastApi;
 
 namespace PodStream_UnitTest
 {
@@ -17,21 +23,41 @@ namespace PodStream_UnitTest
         }
 
         [Test]
+        public void TestGetShows()
+        {
+            var podcastFeedProvider = new Mock<IPodcastFeedProvider>();
+            podcastFeedProvider.Setup(provider => provider.Get(""))
+                .Returns(new PodcastFeed
+                {
+                    FeedItems = new List<PodcastFeedItem>
+                    {
+                        new PodcastFeedItem()
+                    }
+                });
+
+            var podcastProvider = new Mock<IPodcastProvider>();
+            podcastProvider.Setup(provider => provider.GetShows("testChannel"))
+                .Returns(new List<Show> { new Show { Title = "TestTitle", XmlLink = "http://www.dr.dk" } });
+
+            var controller = new PodcastController(podcastFeedProvider.Object, podcastProvider.Object);
+
+            var result = controller.GetShows("testChannel") as JsonResult;
+            Assert.IsNotNull(result);
+            var listItems = ((IEnumerable<SelectListItem>) result.Data).ToList();
+            Assert.AreEqual(2, listItems.Count());
+            Assert.IsNotNull(listItems.Single(li => li.Text == "TestTitle"));
+        }
+
+        [Test]
+        public void TestGetEpisodes()
+        {
+            Assert.Inconclusive("Needs to be tested.");
+        }
+
+        [Test]
         public void TestFeedItemsAreMapped()
         {
             Assert.Inconclusive("Needs to be tested.");
-            //var serviceMock = new Mock<IPodcastFeedService>();
-            //serviceMock.Setup(sm => sm.GetFeed(""))
-            //    .Returns(new PodcastFeed
-            //    {
-            //        FeedItems = new List<PodcastServiceFeedItem>
-            //        {
-            //            new PodcastServiceFeedItem()
-            //        }
-            //    });
-            //var controller = new PodcastFeedController(serviceMock.Object);
-            //var result = controller.Index() as ViewResult;
-            //Assert.IsInstanceOf<FeedItem>(result.Model);
         }
     }
 }

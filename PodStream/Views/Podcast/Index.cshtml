@@ -8,10 +8,21 @@
 
 <div class="row">
     <div class="col-md-3">
-        @Html.DropDownListFor(x => x.SelectedChannel, new SelectList(Model.AvailableChannels, "Value", "Text"), "Vælg kanal", new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.SelectedChannel, new SelectList(Model.AvailableChannels, "Value", "Text"), "Vælg kanal", new {@class = "form-control"})
     </div>
     <div class="col-md-3">
-        @Html.DropDownListFor(x => x.SelectedShow, new SelectList(Model.AvailableShows, "Value", "Text"), "Vælg program", new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.SelectedShow, new SelectList(Model.AvailableShows, "Value", "Text"), "Vælg program", new {@class = "form-control"})
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+
+    </div>
+    <div class="col-md-4">
+
+
     </div>
 </div>
 
