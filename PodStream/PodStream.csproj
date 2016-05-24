@@ -230,9 +230,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Feed.cs" />
-    <Compile Include="Models\FeedItem.cs" />
+    <Compile Include="Models\PodcastFeed.cs" />
+    <Compile Include="Models\PodcastFeedItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\IPodcastFeedProvider.cs" />
+    <Compile Include="Providers\Models\Rss\BaseRssChannel.cs" />
+    <Compile Include="Providers\Models\Rss\BaseRssFeed.cs" />
+    <Compile Include="Providers\Models\Rss\BaseRssItem.cs" />
+    <Compile Include="Providers\Models\Rss\DateTimeParser.cs" />
+    <Compile Include="Providers\Models\Rss\IRssChannel.cs" />
+    <Compile Include="Providers\Models\Rss\IRssFeed.cs" />
+    <Compile Include="Providers\Models\Rss\IRssService.cs" />
+    <Compile Include="Providers\Models\Rss\RssDeserializer.cs" />
+    <Compile Include="Providers\Models\Rss\RssEnclosure.cs" />
+    <Compile Include="Providers\Models\Rss\RssImage.cs" />
+    <Compile Include="Providers\Models\Rss\RssService.cs" />
+    <Compile Include="Providers\PodcastFeedProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,12 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PodStreamService\PodStreamService.csproj">
-      <Project>{B143EE01-DCA9-4193-A7CE-E866083B056F}</Project>
-      <Name>PodStreamService</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using PodStream.Models;
-using PodStreamService;
+using PodStream.Providers;
 
 namespace PodStream.Controllers
 {
     public class PodcastFeedController : Controller
     {
 
-        private readonly IPodcastFeedService podcastFeedService;
+        private readonly IPodcastFeedProvider podcastFeedService;
 
-        public PodcastFeedController(IPodcastFeedService podcastFeedService)
+        public PodcastFeedController(IPodcastFeedProvider podcastFeedService)
         {
             if (podcastFeedService == null)
                 throw new ArgumentNullException(nameof(podcastFeedService));
@@ -23,11 +23,11 @@ namespace PodStream.Controllers
         
         public ActionResult Index()
         {
-            var feed = podcastFeedService.GetFeed("http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500");
+            var feed = podcastFeedService.Get("http://www.dr.dk/mu/Feed/harddisken?format=podcast&limit=500");
             if (feed == null)
                 return View();
 
-            return View(Mapper.Map<PodcastFeed, Feed>(feed));
+            return View(feed);
         }
     }
 }

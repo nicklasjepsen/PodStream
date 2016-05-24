@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PodStream.Models;
+using PodStream.Providers.Models.Rss;
 
-namespace PodStreamService
+namespace PodStream.Providers
 {
-    public class PodcastFeedService : IPodcastFeedService
+    public class PodcastFeedProvider : IPodcastFeedProvider
     {
         private readonly IRssService rssService;
 
-        public PodcastFeedService(IRssService rssService)
+        public PodcastFeedProvider(IRssService rssService)
         {
             this.rssService = rssService;
         }
 
-        public PodcastFeed GetFeed(string feedUrl)
+        public PodcastFeed Get(string feedUrl)
         {
             if (string.IsNullOrEmpty(feedUrl))
                 throw new ArgumentNullException(nameof(feedUrl));
 
             var feed = rssService.GetFeedItems(feedUrl);
 
-            // ATM we are only supporting single channels RSS
+            // ATM we are only supporting single channel RSS
             var channel = feed?.GetRssChannels()?.FirstOrDefault();
             if (channel == null)
                 return null;
@@ -30,10 +32,10 @@ namespace PodStreamService
             var feedResult = new PodcastFeed
             {
                 FeedItems = (from rssItem in channel.GetRssItems()
-                             select new PodcastServiceFeedItem
+                             select new PodcastFeedItem
                              {
                                  Title = rssItem.Title,
-                                 Url = rssItem.Link,
+                                 Url = rssItem.Enclosure.Url,
                                  ExternalItemId = rssItem.GetGuid(),
                                  PublishDate = rssItem.Date,
                                  Summary = rssItem.Description,

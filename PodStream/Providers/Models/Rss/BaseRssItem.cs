@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
     [Serializable]
     [XmlRoot("item", IsNullable = false)]
@@ -16,8 +16,8 @@ namespace PodStreamService.Rss
         [XmlElement("pubDate")]
         public string PublishedDate { get; set; }
 
-        [XmlElement("link")]
-        public string Link { get; set; }
+        [XmlElement("enclosure")]
+        public RssEnclosure Enclosure { get; set; }
 
         [XmlElement("guid")]
         public string Guid { get; set; }
@@ -38,7 +38,7 @@ namespace PodStreamService.Rss
         public virtual string GetGuid()
         {
             if (string.IsNullOrEmpty(Guid))
-                return Link;
+                return Enclosure.Url;
             return Guid;
         }
     }

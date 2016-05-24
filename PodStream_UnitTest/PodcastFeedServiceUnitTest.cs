@@ -4,8 +4,8 @@ using System.Globalization;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
-using PodStreamService;
-using PodStreamService.Rss;
+using PodStream.Providers;
+using PodStream.Providers.Models.Rss;
 
 namespace PodStream_UnitTest
 {
@@ -16,7 +16,7 @@ namespace PodStream_UnitTest
         public void TestGetFeedItems_ParamIsNull()
         {
             Assert.Throws<ArgumentNullException>(() => 
-                new PodcastFeedService(new Mock<IRssService>().Object).GetFeed(null));
+                new PodcastFeedProvider(new Mock<IRssService>().Object).Get(null));
         }
 
         [Test]
@@ -25,17 +25,17 @@ namespace PodStream_UnitTest
             var rssServiceMock = new Mock<IRssService>();
             rssServiceMock.Setup(rss => rss.GetFeedItems(TestConfig.ValidFeedUrl)).Returns(new BaseRssFeed<BaseRssChannel<BaseRssItem>>()
             {
-                RssChannels = new List<BaseRssChannel<BaseRssItem>>()
+                RssChannels = new List<BaseRssChannel<BaseRssItem>>
                 {
-                    new BaseRssChannel<BaseRssItem>()
+                    new BaseRssChannel<BaseRssItem>
                     {
-                        RssItems = new List<BaseRssItem>()
+                        RssItems = new List<BaseRssItem>
                         {
                             new BaseRssItem
                             {
                                 Description = "Test rss item",
                                 Guid = Guid.NewGuid().ToString(),
-                                Link = "http://test.dk",
+                                Enclosure = new RssEnclosure() {Url = "http://test.dk"},
                                 PublishedDate = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture),
                                 Title = "Test title"
                             }
@@ -44,8 +44,8 @@ namespace PodStream_UnitTest
                 }
             });
             
-            var feedService = new PodcastFeedService(rssServiceMock.Object);
-            var feed = feedService.GetFeed(TestConfig.ValidFeedUrl);
+            var feedService = new PodcastFeedProvider(rssServiceMock.Object);
+            var feed = feedService.Get(TestConfig.ValidFeedUrl);
             Assert.AreEqual(1, feed.FeedItems.Count());
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
     public class DateTimeParser
     {

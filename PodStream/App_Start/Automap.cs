@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using PodStream.Models;
-using PodStreamService;
 
 namespace PodStream
 {
@@ -13,8 +12,8 @@ namespace PodStream
     {
         public static void ConfigureAutoMapper()
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<PodcastServiceFeedItem, FeedItem>());
-            Mapper.Initialize(cfg => cfg.CreateMap<PodcastFeed, Feed>());
+            //Mapper.Initialize(cfg => cfg.CreateMap<PodcastFeedItem, PodcastFeedItem>());
+            //Mapper.Initialize(cfg => cfg.CreateMap<PodcastFeed, PodcastFeed>());
         }
     }
 }

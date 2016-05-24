@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Serialization;
-using PodStreamService.Rss;
 
-namespace PodStreamService
+namespace PodStream.Providers.Models.Rss
 {
     public class RssService : IRssService
     {

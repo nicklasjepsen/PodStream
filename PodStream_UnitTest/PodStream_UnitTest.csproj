@@ -115,10 +115,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PodStreamService\PodStreamService.csproj">
-      <Project>{B143EE01-DCA9-4193-A7CE-E866083B056F}</Project>
-      <Name>PodStreamService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PodStream\PodStream.csproj">
       <Project>{71ABFA71-8529-4ADE-9545-0DEB3EEE0798}</Project>
       <Name>PodStream</Name>

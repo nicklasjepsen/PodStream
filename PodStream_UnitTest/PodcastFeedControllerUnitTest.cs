@@ -4,9 +4,6 @@ using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using PodStream;
-using PodStream.Controllers;
-using PodStream.Models;
-using PodStreamService;
 
 namespace PodStream_UnitTest
 {

@@ -1,4 +1,4 @@
-﻿@model PodStream.Models.Feed
+﻿@model PodStream.Models.PodcastFeed
 
 @{
     ViewBag.Title = "Podcast Feed";
@@ -12,6 +12,7 @@
     <tr>
         <th>Beskrivelse</th>
         <th>Link</th>
+        <th>Varighed</th>
         <th>Udgivelses dato</th>
     </tr>
     @foreach (var item in Model.FeedItems)
@@ -20,6 +21,7 @@
         <tr>
             <td>@item.Summary</td>
             <td><a href="@item.Url" target="_blank">Afspil</a></td>
+            <td>@item.Lenght</td>
             <td>@item.PublishDate.ToString("dd-MM-yyyy")</td>
         </tr>
     }

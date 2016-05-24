@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
 	public interface IRssFeed<T>
 	{

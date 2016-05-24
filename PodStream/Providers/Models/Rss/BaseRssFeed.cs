@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
 	[Serializable]
 	[XmlRoot("rss", IsNullable = false)]

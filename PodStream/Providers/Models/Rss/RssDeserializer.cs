@@ -3,7 +3,7 @@ using System.Net;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
     /// <summary>
     /// Deserialize an RssFeed

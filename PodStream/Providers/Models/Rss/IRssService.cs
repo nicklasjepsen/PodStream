@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using PodStreamService.Rss;
-
-namespace PodStreamService
+﻿namespace PodStream.Providers.Models.Rss
 {
     public interface IRssService
     {

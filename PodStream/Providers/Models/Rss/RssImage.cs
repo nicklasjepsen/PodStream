@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-namespace PodStreamService.Rss
+namespace PodStream.Providers.Models.Rss
 {
     [Serializable]
     public class RssImage

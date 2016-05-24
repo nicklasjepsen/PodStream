@@ -15,7 +15,9 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using PodStreamService;
+using PodStream.Providers;
+using IRssService = PodStream.Providers.Models.Rss.IRssService;
+using RssService = PodStream.Providers.Models.Rss.RssService;
 
 namespace PodStream.DependencyResolution {
     using StructureMap.Configuration.DSL;
@@ -31,7 +33,7 @@ namespace PodStream.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            For<IPodcastFeedService>().Use<PodcastFeedService>();
+            For<IPodcastFeedProvider>().Use<PodcastFeedProvider>();
             For<IRssService>().Use<RssService>();
         }
 
