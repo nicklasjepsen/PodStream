@@ -56,7 +56,7 @@
             var val = $(this).val();
             initTable();
             var tableBody;
-            $.getJSON("@Url.Action("GetEpisodes","Podcast")", { feedUrl: val }, function (data) {
+            $.getJSON("@Url.Action("GetFeedItems","Podcast")", { feedUrl: val }, function (data) {
                 $.each(data.FeedItems, function (index, item) {
                     tableBody += '<tr><td><div class="text-center"><a href="';
                     tableBody += item.Url;

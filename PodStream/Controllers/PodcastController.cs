@@ -35,7 +35,7 @@ namespace PodStream.Controllers
             return View(podcast);
         }
 
-        public ActionResult GetEpisodes(string feedUrl) 
+        public ActionResult GetFeedItems(string feedUrl) 
         {
             if (string.IsNullOrEmpty(feedUrl))
                 return null;
