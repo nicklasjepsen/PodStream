@@ -35,7 +35,7 @@
     $(initTable = function () {
         $("#showDetailsDiv").hide();
         $("#feedItemsTable").hide();
-        $("#feedItemsTable").html('<thead><tr><th class="col-md-1">Afspil</th><th class="col-md-8">Beskrivelse</th><th class="col-md-1">Varighed</th><th class="col-md-1">Størrelse</th><th class="col-md-1">Udgivet</th></tr></thead><tbody></tbody>');
+        $("#feedItemsTable").html('<thead><tr><th class="col-md-1">Afspil</th><th class="col-md-1">Hent</th><th class="col-md-7">Beskrivelse</th><th class="col-md-1">Varighed</th><th class="col-md-1">Størrelse</th><th class="col-md-1">Udgivet</th></tr></thead><tbody></tbody>');
     });
 
     $(function () {
@@ -66,7 +66,9 @@
                 $.each(data.FeedItems, function (index, item) {
                     tableBody += '<tr><td><div class="text-center"><a href="';
                     tableBody += item.Url;
-                    tableBody += '" target="_blank"><i style="font-size: 1.5em;" class="text-center success glyphicon glyphicon-play-circle"></i></a></div></td><td>';
+                    tableBody += '" target="_blank"><i style="font-size: 1.5em;" class="text-center success glyphicon glyphicon-play-circle"></i></a></div></td><td><div class="text-center"><a download href="';
+                    tableBody += item.Url;
+                    tableBody += '" target="_blank"><i style="font-size: 1.5em;" class="text-center text-success glyphicon glyphicon-download"></i></a></div></td><td>';
                     tableBody += item.Summary;
                     tableBody += '</td><td class="text-right">';
                     tableBody += item.Duration;
