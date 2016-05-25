@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using PodStream.Models;
 using PodStream.Providers;
 
@@ -35,14 +36,6 @@ namespace PodStream.Controllers
             return View(podcast);
         }
 
-        public ActionResult GetFeedItems(string feedUrl) 
-        {
-            if (string.IsNullOrEmpty(feedUrl))
-                return null;
-            var res = podcastFeedService.Get(feedUrl);
-            return Json(res, JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult GetShows(string name)
         {
             if (string.IsNullOrEmpty(name))
@@ -51,16 +44,23 @@ namespace PodStream.Controllers
             {
                 new SelectListItem {Text = "Vælg program", Value = "0"}
             };
-
-            var allShows = podcastProvider.GetShows(name).ToList();
-            items.AddRange(allShows.Select(s =>
+            
+            items.AddRange(podcastProvider.GetShows(name).Select(s =>
                 new SelectListItem
                 {
                     Text = s.Title,
-                    Value = s.XmlLink
+                    Value = JsonConvert.SerializeObject(s)
                 }));
 
             return Json(items, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetFeedItems(string feedUrl) 
+        {
+            if (string.IsNullOrEmpty(feedUrl))
+                return null;
+            var res = podcastFeedService.Get(feedUrl);
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
     }
 }
