@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStream", "PodStream\PodS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStream_UnitTest", "PodStream_UnitTest\PodStream_UnitTest.csproj", "{55DA6779-10EB-4729-987C-35CEF2EABB44}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Downloader", "Downloader\Downloader.csproj", "{701E982F-F475-488B-B661-C376E530D50F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PodStream.Core", "PodStream.Core\PodStream.Core.csproj", "{57EFBE85-D7F1-4D17-A799-6350B5605AB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55DA6779-10EB-4729-987C-35CEF2EABB44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{701E982F-F475-488B-B661-C376E530D50F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{701E982F-F475-488B-B661-C376E530D50F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{701E982F-F475-488B-B661-C376E530D50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{701E982F-F475-488B-B661-C376E530D50F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57EFBE85-D7F1-4D17-A799-6350B5605AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57EFBE85-D7F1-4D17-A799-6350B5605AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57EFBE85-D7F1-4D17-A799-6350B5605AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57EFBE85-D7F1-4D17-A799-6350B5605AB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

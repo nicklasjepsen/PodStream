@@ -4,8 +4,8 @@ using System.Globalization;
 using System.Linq;
 using Moq;
 using NUnit.Framework;
-using PodStream.Providers;
-using PodStream.Providers.Models.Rss;
+using PodStream.Core.Providers;
+using PodStream.Core.Providers.Models.Rss;
 
 namespace PodStream_UnitTest
 {

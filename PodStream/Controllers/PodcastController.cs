@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
-using PodStream.Models;
-using PodStream.Providers;
+using PodStream.Core.Providers;
 
 namespace PodStream.Controllers
 {
@@ -27,7 +25,7 @@ namespace PodStream.Controllers
 
         public ActionResult Index()
         {
-            var podcast = new Podcast
+            var podcast = new PodcastModel
             {
                 AvailableChannels = podcastProvider.GetChannels().Select(c => new SelectListItem { Text = c, Value = c }),
                 AvailableShows = new SelectListItem[0]

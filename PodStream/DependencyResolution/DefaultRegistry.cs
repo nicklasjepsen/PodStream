@@ -15,9 +15,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using PodStream.Providers;
-using IRssService = PodStream.Providers.Models.Rss.IRssService;
-using RssService = PodStream.Providers.Models.Rss.RssService;
+using PodStream.Core;
+using PodStream.Core.Providers;
+using IRssService = PodStream.Core.Providers.Models.Rss.IRssService;
+using RssService = PodStream.Core.Providers.Models.Rss.RssService;
 
 namespace PodStream.DependencyResolution {
     using StructureMap.Configuration.DSL;
@@ -29,6 +30,7 @@ namespace PodStream.DependencyResolution {
         public DefaultRegistry() {
             Scan(
                 scan => {
+                    scan.AssemblyContainingType(typeof(PodcastFeedProvider));
                     scan.TheCallingAssembly();
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());

@@ -7,9 +7,9 @@ using Moq;
 using NUnit.Framework;
 using PodStream;
 using PodStream.Controllers;
-using PodStream.Models;
-using PodStream.Providers;
-using PodStream.Providers.Models.PodcastApi;
+using PodStream.Core.Models;
+using PodStream.Core.Providers;
+using PodStream.Core.Providers.Models.PodcastApi;
 
 namespace PodStream_UnitTest
 {

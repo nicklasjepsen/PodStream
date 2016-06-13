@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using PodStream.Providers.Models.Rss;
+using PodStream.Core.Providers.Models.Rss;
 
 namespace PodStream_UnitTest
 {
